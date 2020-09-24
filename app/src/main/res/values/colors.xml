@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    @color/cyan_600
+    @color/amber_400
+    @color/light_green_400
+    @color/light_green_500
+
+    <color name="colorPrimary">#9C27B0</color>
+    <color name="colorPrimaryDark">#000000</color>
+
+    <color name="colorAccent">#FF00ACC1</color>
+    <color name="textColorPrimary">#000000</color>
+    <color name="mainColor">#FF00ACC1</color>
+    <color name="mainColorDark">#00838F</color>
+//backgrounds
+    <color name="buttonBackground">#673AB7</color>
+    <color name="windowBackground">#9C27B0</color>
+    <color name="movieBack">#07DEFA</color>
+    <color name="musicBack">#0DDF15</color>
+    <color name="bookBack">#FF0000</color>
+    <color name="foodBack">#FFFFFF</color>
+    <color name="gameBack">#FFE500</color>
+    <color name="helpBack">#FF9800</color>
+    <color name="mapBack">#FF0057</color>
+    <color name="griback">#3E3D3E</color>
+
+
+
+    <color name="white">#ffffff</color>
+    <color name="intro_button_color">#FF8BC34A</color>
+
+</resources>

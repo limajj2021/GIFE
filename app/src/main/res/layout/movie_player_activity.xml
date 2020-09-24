@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/movieBack">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="949dp"
+        android:layout_height="593dp"
+        android:background="@color/movieBack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.567"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.709">
+
+        <Button
+            android:id="@+id/comedyButton"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/comedy_256" />
+
+
+        <Button
+            android:id="@+id/horrorButton"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/comedyButton"
+            android:layout_toRightOf="@+id/comedyButton"
+            android:background="@drawable/horror_256" />
+
+
+        <Button
+            android:id="@+id/fantasyButton"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_toEndOf="@+id/horrorButton"
+            android:layout_toRightOf="@+id/horrorButton"
+            android:background="@drawable/fantasy_256" />
+
+
+        <Button
+            android:id="@+id/actionButton"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_below="@+id/comedyButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/action_256" />
+
+        <Button
+            android:id="@+id/kidsButton"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_below="@+id/horrorButton"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@+id/actionButton"
+            android:layout_toRightOf="@+id/actionButton"
+            android:background="@drawable/children_256" />
+
+        <Button
+            android:id="@+id/romanceButton"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_below="@+id/fantasyButton"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@+id/kidsButton"
+            android:layout_toRightOf="@+id/kidsButton"
+            android:background="@drawable/romance_256" />
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

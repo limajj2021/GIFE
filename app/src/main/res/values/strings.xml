@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">GIFE</string>
+    <string name="gife_about">
+GIFE is a In-Flight Entertainment system.IFE systems are the most important services which are provided by airline companies to improve the quality of travel experiences.This system is included video entertainment(movies), audio entertainment(kinds of music,audiobooks), in-flight games, moving-map systems, and restaurant menu(order services). Also, you can call cabin services from GIFE.
+
+</string>
+    <string name="menu_breakfast">
+Toast---------------------------5$
+Breakfast Plate------------7$
+Sandwich---------------------5$
+Croissant---------------------4$</string>
+    <string name="menu_snack">
+Burger------------------------10$
+Pizza--------------------------12$
+Wrap--------------------------10$
+Pasta---------------------------9$
+French Fries----------------7$
+Salad-------------------------10$
+    </string>
+    <string name="menu_dessert">
+Cake---------------------------7$
+Apple Pie--------------------8$
+Ice cream-------------------4$
+Pudding----------------------5$</string>
+    <string name="menu_drinks">
+Water--------------------------1$
+Tea------------------------------2$
+Juice---------------------------3$
+Coffee-------------------------3$
+Beer----------------------------5$
+Wine---------------------------8$
+    </string>
+    <string name="menu_mainCourse">
+Lasagna--------------------8$
+Meat Pasty----------------7$
+Beefsteak ---------------15$
+Meatball------------------10$
+Grilled Chicken--------12$
+        RibSteak-----------------17$
+Chicken Schnitzel----10$
+Salmon--------------------15$
+Sushi-----------------------17$
+Fried Shrimp------------20$
+Chicken Fajita----------15$
+Tofu Pad Thai----------15$
+
+    </string>
+
+
+</resources>

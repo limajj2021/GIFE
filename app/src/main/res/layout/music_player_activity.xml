@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/musicBack">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/PopTextView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="20dp"
+            android:text="Pop"
+            android:textColor="#009688"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/pop1start"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="70dp"
+            android:background="@color/musicBack"
+            android:text="Alien -Dennis Lloyd ▶"
+            android:onClick="pop1start"/>
+
+        <Button
+            android:id="@+id/pop1stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="70dp"
+            android:layout_toEndOf="@+id/pop1start"
+            android:layout_toRightOf="@+id/pop1start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="pop1stop"/>
+
+        <Button
+            android:id="@+id/pop2start"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pop1start"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/musicBack"
+            android:text="Boyfriend-Selena G.▶"
+            android:onClick="pop2start"/>
+
+        <Button
+            android:id="@+id/pop2stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pop1stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/pop2start"
+            android:layout_toRightOf="@+id/pop2start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="pop2stop"/>
+        <Button
+            android:id="@+id/pop3start"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pop2start"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/musicBack"
+            android:text="Break My Heart-Dua Lipa"
+            android:onClick="pop3start"/>
+
+        <Button
+            android:id="@+id/pop3stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pop2stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/pop3start"
+            android:layout_toRightOf="@+id/pop3start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="pop3stop"/>
+
+        <TextView
+            android:id="@+id/ClassicTextView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/pop3start"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="15dp"
+            android:text="Classic"
+            android:textColor="#009688"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/classic1start"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ClassicTextView"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/musicBack"
+            android:text="FourSeasons-Vivaldi▶"
+            android:onClick="classic1start"/>
+
+        <Button
+            android:id="@+id/classic1stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="313dp"
+            android:layout_toEndOf="@+id/classic1start"
+            android:layout_toRightOf="@+id/classic1start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="classic1stop" />
+
+        <Button
+            android:id="@+id/classic2start"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/classic1start"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/musicBack"
+            android:text="Chopin-Nocturne op.9 ▶"
+            android:onClick="classic2start"/>
+
+        <Button
+            android:id="@+id/classic2stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/classic1stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/classic2start"
+            android:layout_toRightOf="@+id/classic2start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="classic2stop"/>
+        <Button
+            android:id="@+id/classic3start"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/classic2start"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="55dp"
+            android:layout_marginLeft="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/musicBack"
+            android:text="Amelie Soundtrack▶"
+            android:onClick="classic3start"/>
+
+        <Button
+            android:id="@+id/classic3stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/classic2stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/classic3start"
+            android:layout_toRightOf="@+id/classic3start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="classic3stop"/>
+
+        <TextView
+            android:id="@+id/RockTextView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="220dp"
+            android:layout_marginLeft="220dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/PopTextView"
+            android:layout_toRightOf="@+id/PopTextView"
+            android:text="Rock"
+            android:textColor="#009688"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/rock1start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="70dp"
+            android:layout_toEndOf="@+id/pop1stop"
+            android:layout_toRightOf="@+id/pop1stop"
+            android:background="@color/musicBack"
+            android:text="Revolution-The Beatles▶"
+            android:onClick="rock1start"
+            />
+
+        <Button
+            android:id="@+id/rock1stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="70dp"
+            android:layout_toEndOf="@+id/rock1start"
+            android:layout_toRightOf="@+id/rock1start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="rock1stop"/>
+
+        <Button
+            android:id="@+id/rock2start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rock1start"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/pop2stop"
+            android:layout_toRightOf="@+id/pop2stop"
+            android:background="@color/musicBack"
+            android:text="AC/DC-Back In Black▶"
+            android:onClick="rock2start"/>
+
+        <Button
+            android:id="@+id/rock2stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rock1stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/rock2start"
+            android:layout_toRightOf="@+id/rock2start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="rock2stop"
+             />
+
+        <TextView
+            android:id="@+id/KidsTextView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/rock2start"
+            android:layout_marginStart="160dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/pop3stop"
+            android:layout_toRightOf="@+id/pop3stop"
+            android:text="Kids"
+            android:textColor="#009688"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/kids1start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/KidsTextView"
+            android:layout_marginStart="210dp"
+            android:layout_marginLeft="210dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/ClassicTextView"
+            android:layout_toRightOf="@+id/ClassicTextView"
+            android:background="@color/musicBack"
+            android:text="Disney Frozen-Let It Go▶"
+            android:onClick="kids1start"/>
+
+        <Button
+            android:id="@+id/kids1stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rock2stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="65dp"
+            android:layout_toEndOf="@+id/kids1start"
+            android:layout_toRightOf="@+id/kids1start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="kids1stop"/>
+
+        <Button
+            android:id="@+id/kids2start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kids1start"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/classic1stop"
+            android:layout_toRightOf="@+id/classic1stop"
+            android:background="@color/musicBack"
+            android:text="BABY SHARK▶"
+            android:onClick="kids2start"/>
+
+        <Button
+            android:id="@+id/kids2stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kids1stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/kids2start"
+            android:layout_toRightOf="@+id/kids2start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="kids2stop"
+            />
+
+        <TextView
+            android:id="@+id/OtherTextView"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/kids2start"
+            android:layout_marginStart="160dp"
+            android:layout_marginLeft="160dp"
+            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/classic2stop"
+            android:layout_toRightOf="@+id/classic2stop"
+            android:text="Other"
+            android:textColor="#009688"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/other1start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/OtherTextView"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/classic3stop"
+            android:layout_toRightOf="@+id/classic3stop"
+            android:background="@color/musicBack"
+            android:text="Rolling in the Deep▶"
+            android:onClick="other1start"/>
+
+        <Button
+            android:id="@+id/other1stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/kids2stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="55dp"
+            android:layout_toEndOf="@+id/other1start"
+            android:layout_toRightOf="@+id/other1start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="other1stop"/>
+
+        <Button
+            android:id="@+id/other2start"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/other1start"
+            android:layout_marginStart="150dp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/classic1stop"
+            android:layout_toRightOf="@+id/classic1stop"
+            android:background="@color/musicBack"
+            android:text="Billie Eilish-lovely▶"
+            android:onClick="other2start"/>
+
+        <Button
+            android:id="@+id/other2stop"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/other1stop"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@+id/other2start"
+            android:layout_toRightOf="@+id/other2start"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="other2stop"/>
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

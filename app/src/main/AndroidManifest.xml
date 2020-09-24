@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.gife">
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key"/>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Movie_Player"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".movies.comedy_movie"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".movies.action_movie"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".movies.fantasy_movie"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".movies.horror_movie"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".movies.romance_movie"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".movies.kids_movie"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".BookActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Food_Menu"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".HelpActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Map_Activity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Music_Player"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".books.book1"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".books.book2"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".books.book3"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".books.book4"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".Aviophobia"
+            android:label="@string/app_name" >
+
+        </activity>
+        <activity
+            android:name=".games.Game1"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".games.Game2"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".games.Game3"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".games.Game4"
+            android:label="@string/app_name" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bookBack">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/bookstextview"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="15dp"
+            android:text="Books"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/harrypotterButton"
+            android:layout_width="220dp"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="215dp"
+            android:background="@drawable/harrypotter"
+             />
+
+        <Button
+            android:id="@+id/infernoButton"
+            android:layout_width="220dp"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="250dp"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="208dp"
+            android:background="@drawable/danbrowninferno"
+             />
+
+        <Button
+            android:id="@+id/faltStarsButton"
+            android:layout_width="220dp"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="480dp"
+            android:layout_marginLeft="480dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="215dp"
+            android:background="@drawable/faultstars"
+             />
+
+        <Button
+            android:id="@+id/littlePrinceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="720dp"
+            android:layout_marginLeft="720dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="215dp"
+            android:background="@drawable/littleprincee"
+             />
+
+        <TextView
+            android:id="@+id/audiobookstextview"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="145dp"
+            android:text="Audio Books"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/audiobookbutton1"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="108dp"
+            android:layout_marginLeft="108dp"
+            android:layout_marginBottom="72dp"
+            android:background="@drawable/audiobook"
+            android:onClick="audio1start"
+            android:text="the house on the hill-      elizabeth laird ▶"
+
+            android:textColor="@color/colorPrimaryDark" />
+
+        <Button
+            android:id="@+id/audiobookbutton2"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="470dp"
+            android:layout_marginLeft="470dp"
+            android:layout_marginBottom="70dp"
+            android:background="@drawable/audiobook"
+            android:onClick="audio2start"
+            android:text="the black cat -                                      edgar allan poe ▶"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+        <Button
+            android:id="@+id/audio1pause"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="70dp"
+            android:layout_toEndOf="@+id/audiobookbutton1"
+            android:layout_toRightOf="@+id/audiobookbutton1"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="audio1stop"
+             />
+        <Button
+            android:id="@+id/audio2pause"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="70dp"
+            android:layout_toEndOf="@+id/audiobookbutton2"
+            android:layout_toRightOf="@+id/audiobookbutton2"
+            android:background="@android:drawable/ic_media_pause"
+            android:onClick="audio2stop"
+            />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

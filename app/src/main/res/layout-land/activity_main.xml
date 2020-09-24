@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="false"
+    android:background="@color/windowBackground"
+    android:scrollbarTrackVertical="@drawable/round_library_music_white_48"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="924dp"
+        android:layout_height="496dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="@color/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.721">
+
+        <Button
+            android:id="@+id/videoButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_below="@+id/bookButton"
+            android:layout_marginTop="-130dp"
+            android:layout_marginEnd="176dp"
+            android:layout_marginRight="176dp"
+            android:layout_toStartOf="@+id/musicButton"
+            android:layout_toLeftOf="@+id/musicButton"
+            android:background="@drawable/round_video_library_white_48"
+             />
+
+        <TextView
+            android:id="@+id/videoText"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/videoButton"
+            android:layout_alignBottom="@id/musicButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="-40dp"
+            android:text="MOVIE"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/musicButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginEnd="176dp"
+            android:layout_marginRight="176dp"
+            android:layout_toStartOf="@+id/bookButton"
+            android:layout_toLeftOf="@+id/bookButton"
+            android:background="@drawable/round_library_music_white_48"
+             />
+
+        <TextView
+            android:id="@+id/musicText"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/musicButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="390dp"
+            android:layout_marginLeft="390dp"
+            android:layout_marginTop="11dp"
+            android:text="MUSIC"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/bookButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="121dp"
+            android:background="@drawable/round_import_contacts_white_48"
+             />
+
+        <TextView
+            android:id="@+id/bookText"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/bookButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="700dp"
+            android:layout_marginLeft="700dp"
+            android:layout_marginTop="11dp"
+            android:text="BOOK"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/gameButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_below="@+id/videoButton"
+            android:layout_alignBottom="@id/videoButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="-201dp"
+            android:background="@drawable/round_sports_esports_white_48"
+            />
+
+        <TextView
+            android:id="@+id/gameText"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/gameButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="90dp"
+            android:layout_marginLeft="90dp"
+            android:layout_marginTop="210dp"
+            android:text="GAME"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/foodButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_below="@+id/musicButton"
+            android:layout_marginStart="176dp"
+            android:layout_marginLeft="176dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/gameButton"
+            android:layout_toRightOf="@+id/gameButton"
+            android:background="@drawable/round_restaurant_menu_white_48"
+            />
+
+        <TextView
+            android:id="@+id/foodText"
+            android:layout_width="113dp"
+            android:layout_height="41dp"
+            android:layout_below="@+id/foodButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="390dp"
+            android:layout_marginLeft="390dp"
+            android:layout_marginTop="10dp"
+            android:text="FOOD MENU"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/mapButton"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_below="@+id/bookButton"
+            android:layout_marginStart="176dp"
+            android:layout_marginLeft="176dp"
+            android:layout_marginTop="60dp"
+            android:layout_toEndOf="@+id/foodButton"
+            android:layout_toRightOf="@+id/foodButton"
+            android:background="@drawable/round_location_on_white_48"
+             />
+
+        <TextView
+            android:id="@+id/MAPText"
+            android:layout_width="113dp"
+            android:layout_height="41dp"
+            android:layout_below="@+id/mapButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="710dp"
+            android:layout_marginLeft="710dp"
+            android:layout_marginTop="10dp"
+            android:text="MAP"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/helpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="83dp"
+            android:layout_below="@+id/foodButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="410dp"
+            android:layout_marginLeft="410dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="420dp"
+            android:layout_marginRight="420dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/round_help_white_48" />
+
+        <TextView
+            android:id="@+id/helpText"
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/helpButton"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="420dp"
+            android:layout_marginLeft="420dp"
+            android:layout_marginTop="-20dp"
+            android:layout_marginBottom="-1dp"
+            android:text="    HELP"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
