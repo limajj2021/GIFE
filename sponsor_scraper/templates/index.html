@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贊助商聯絡蒐集工具</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+  body { font-family: 'Noto Sans TC', sans-serif; }
+  .tab-active { border-bottom: 3px solid #3b82f6; color: #1d4ed8; font-weight: 600; }
+  .status-badge { padding: 2px 10px; border-radius: 9999px; font-size: 0.78rem; font-weight: 500; white-space: nowrap; }
+  .badge-green  { background: #d1fae5; color: #065f46; }
+  .badge-yellow { background: #fef3c7; color: #92400e; }
+  .badge-orange { background: #fed7aa; color: #9a3412; }
+  .badge-red    { background: #fee2e2; color: #991b1b; }
+  .badge-gray   { background: #e5e7eb; color: #374151; }
+  #log-box { font-family: 'Courier New', monospace; font-size: 0.82rem; }
+  .progress-bar { transition: width 0.4s ease; }
+  tr:hover td { background: #f0f7ff; }
+</style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<!-- Header -->
+<div class="bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center gap-3">
+    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+    </svg>
+    <div>
+      <h1 class="text-xl font-bold tracking-tight">贊助商聯絡蒐集工具</h1>
+      <p class="text-blue-100 text-sm">自動搜尋 Email，找不到則自動填寫聯絡表單，結果匯出 Excel</p>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+  <!-- ── 左欄：設定表單 ── -->
+  <div class="lg:col-span-2 space-y-4">
+
+    <!-- 輸入方式切換 -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <div class="flex border-b mb-4">
+        <button id="tab-kw" onclick="switchTab('keywords')"
+          class="tab-active px-4 py-2 text-sm">
+          🔍 關鍵字搜尋
+        </button>
+        <button id="tab-url" onclick="switchTab('urls')"
+          class="px-4 py-2 text-sm text-gray-500">
+          📄 上傳 URL 清單
+        </button>
+      </div>
+
+      <div id="panel-keywords">
+        <label class="block text-sm font-medium text-gray-700 mb-1">搜尋關鍵字 <span class="text-gray-400 font-normal">（每行一個）</span></label>
+        <textarea id="keywords" rows="4" placeholder="例：&#10;台灣飲料品牌 贊助&#10;運動用品 贊助商&#10;科技公司 活動贊助"
+          class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent resize-none"></textarea>
+      </div>
+
+      <div id="panel-urls" class="hidden">
+        <label class="block text-sm font-medium text-gray-700 mb-1">上傳 URL 清單 <span class="text-gray-400 font-normal">（txt 或 csv，每行一個網址）</span></label>
+        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-400 transition"
+             onclick="document.getElementById('url_file').click()">
+          <input type="file" id="url_file" class="hidden" accept=".txt,.csv">
+          <svg class="w-8 h-8 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M12 16V8m0 0-3 3m3-3 3 3M4 16v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/>
+          </svg>
+          <p id="file-name" class="text-sm text-gray-500">點擊選擇檔案，或拖曳到此處</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 進階設定 -->
+    <div class="bg-white rounded-xl shadow p-5">
+      <h3 class="font-semibold text-gray-700 mb-3">⚙️ 進階設定</h3>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <label class="text-sm text-gray-600">每個關鍵字搜尋筆數</label>
+          <div class="flex items-center gap-2">
+            <input type="range" id="count" min="5" max="100" value="20"
+              class="w-28" oninput="document.getElementById('count-val').textContent=this.value">
+            <span id="count-val" class="text-sm font-mono w-6 text-right">20</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="text-sm text-gray-600">並發執行緒數</label>
+          <div class="flex items-center gap-2">
+            <input type="range" id="workers" min="1" max="10" value="5"
+              class="w-28" oninput="document.getElementById('workers-val').textContent=this.value">
+            <span id="workers-val" class="text-sm font-mono w-4 text-right">5</span>
+          </div>
+        </div>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" id="no_form" class="rounded text-blue-500">
+          <span class="text-sm text-gray-600">跳過自動填寫聯絡表單（只收集 Email）</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 啟動按鈕 -->
+    <button id="btn-start" onclick="startJob()"
+      class="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-3 rounded-xl shadow transition flex items-center justify-center gap-2">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0 0 10 9.87v4.263a1 1 0 0 0 1.555.832l3.197-2.132a1 1 0 0 0 0-1.664z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+      </svg>
+      開始蒐集
+    </button>
+
+    <!-- 統計摘要（完成後顯示）-->
+    <div id="summary-box" class="hidden bg-white rounded-xl shadow p-5">
+      <h3 class="font-semibold text-gray-700 mb-3">📊 執行結果</h3>
+      <div id="summary-content" class="space-y-1 text-sm"></div>
+      <button id="btn-download" onclick="downloadExcel()"
+        class="mt-4 w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2.5 rounded-lg transition flex items-center justify-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 16v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1M12 12v8m0 0-3-3m3 3 3-3M4 8V6a2 2 0 0 1 2-2h5l2 2h5a2 2 0 0 1 2 2v2"/>
+        </svg>
+        下載 Excel 報表
+      </button>
+    </div>
+  </div>
+
+  <!-- ── 右欄：進度 + 結果 ── -->
+  <div class="lg:col-span-3 space-y-4">
+
+    <!-- 進度條 -->
+    <div id="progress-section" class="hidden bg-white rounded-xl shadow p-5">
+      <div class="flex items-center justify-between mb-2">
+        <span class="font-semibold text-gray-700">執行進度</span>
+        <span id="progress-text" class="text-sm text-gray-500">0 / 0</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div id="progress-bar" class="progress-bar bg-blue-500 h-3 rounded-full" style="width:0%"></div>
+      </div>
+      <p id="progress-status" class="text-xs text-gray-400 mt-1">準備中...</p>
+    </div>
+
+    <!-- 即時 log -->
+    <div id="log-section" class="hidden bg-gray-900 rounded-xl shadow p-4">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-green-400 text-sm font-semibold">即時 Log</span>
+        <button onclick="document.getElementById('log-box').innerHTML=''" class="text-gray-500 text-xs hover:text-gray-300">清除</button>
+      </div>
+      <div id="log-box" class="text-green-300 h-36 overflow-y-auto space-y-0.5"></div>
+    </div>
+
+    <!-- 結果表格 -->
+    <div id="result-section" class="hidden bg-white rounded-xl shadow">
+      <div class="p-4 border-b flex items-center justify-between">
+        <h3 class="font-semibold text-gray-700">蒐集結果</h3>
+        <input type="text" id="filter-input" placeholder="過濾公司/email..."
+          oninput="filterTable(this.value)"
+          class="text-sm border border-gray-300 rounded-lg px-3 py-1.5 focus:ring-2 focus:ring-blue-300 focus:border-transparent w-48">
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead class="bg-gray-50 text-gray-600 text-xs uppercase">
+            <tr>
+              <th class="px-4 py-3 text-left">公司名稱</th>
+              <th class="px-4 py-3 text-left">Email</th>
+              <th class="px-4 py-3 text-left">狀態</th>
+              <th class="px-4 py-3 text-left">網站</th>
+            </tr>
+          </thead>
+          <tbody id="result-tbody" class="divide-y divide-gray-100"></tbody>
+        </table>
+      </div>
+      <p id="result-count" class="text-xs text-gray-400 px-4 py-2 border-t"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentMode = 'keywords';
+let currentJobId = null;
+let currentTotal = 0;
+let allResults = [];
+
+// ── Tab 切換 ──────────────────────────────────────────────────
+function switchTab(mode) {
+  currentMode = mode;
+  document.getElementById('panel-keywords').classList.toggle('hidden', mode !== 'keywords');
+  document.getElementById('panel-urls').classList.toggle('hidden', mode !== 'urls');
+  document.getElementById('tab-kw').className = mode === 'keywords'
+    ? 'tab-active px-4 py-2 text-sm'
+    : 'px-4 py-2 text-sm text-gray-500';
+  document.getElementById('tab-url').className = mode === 'urls'
+    ? 'tab-active px-4 py-2 text-sm'
+    : 'px-4 py-2 text-sm text-gray-500';
+}
+
+// 顯示選取的檔案名稱
+document.getElementById('url_file').addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (f) document.getElementById('file-name').textContent = `✓ ${f.name}`;
+});
+
+// ── 啟動任務 ──────────────────────────────────────────────────
+async function startJob() {
+  const fd = new FormData();
+  fd.append('mode', currentMode);
+  fd.append('count', document.getElementById('count').value);
+  fd.append('workers', document.getElementById('workers').value);
+  fd.append('no_form', document.getElementById('no_form').checked ? 'true' : 'false');
+
+  if (currentMode === 'keywords') {
+    const kw = document.getElementById('keywords').value.trim();
+    if (!kw) { alert('請輸入搜尋關鍵字'); return; }
+    fd.append('keywords', kw);
+  } else {
+    const f = document.getElementById('url_file').files[0];
+    if (!f) { alert('請選擇 URL 清單檔案'); return; }
+    fd.append('url_file', f);
+  }
+
+  setRunning(true);
+  allResults = [];
+  document.getElementById('result-tbody').innerHTML = '';
+  document.getElementById('log-box').innerHTML = '';
+  document.getElementById('summary-box').classList.add('hidden');
+  document.getElementById('result-section').classList.add('hidden');
+
+  try {
+    const resp = await fetch('/api/start', { method: 'POST', body: fd });
+    const data = await resp.json();
+    if (!resp.ok) { alert(data.error || '啟動失敗'); setRunning(false); return; }
+
+    currentJobId = data.job_id;
+    currentTotal = data.total;
+    document.getElementById('progress-section').classList.remove('hidden');
+    document.getElementById('log-section').classList.remove('hidden');
+    updateProgress(0, currentTotal, '搜尋中...');
+    listenSSE(currentJobId);
+  } catch (e) {
+    alert('連線失敗：' + e.message);
+    setRunning(false);
+  }
+}
+
+// ── SSE 監聽 ──────────────────────────────────────────────────
+function listenSSE(jobId) {
+  const es = new EventSource(`/api/stream/${jobId}`);
+
+  es.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.type === 'ping') return;
+    if (msg.type === 'end') { es.close(); return; }
+
+    if (msg.type === 'progress') {
+      const d = msg.data;
+      updateProgress(d.done, d.total, `正在處理：${d.latest.url}`);
+      addResultRow(d.latest);
+    } else if (msg.type === 'form_done') {
+      appendLog(`✉ 表單送出：${msg.data.url} → ${msg.data.status}`);
+    } else if (msg.type === 'log') {
+      appendLog(msg.data.text);
+    } else if (msg.type === 'done') {
+      es.close();
+      setRunning(false);
+      showSummary(msg.data);
+    } else if (msg.type === 'error') {
+      es.close();
+      setRunning(false);
+      appendLog('❌ 錯誤：' + msg.data.message, true);
+    }
+  };
+
+  es.onerror = () => {
+    es.close();
+    setRunning(false);
+  };
+}
+
+// ── UI 輔助函式 ───────────────────────────────────────────────
+function setRunning(running) {
+  const btn = document.getElementById('btn-start');
+  btn.disabled = running;
+  btn.innerHTML = running
+    ? '<svg class="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h5M20 20v-5h-5M4 9a9 9 0 0 1 15-6.7M20 15a9 9 0 0 1-15 6.7"/></svg> 蒐集中...'
+    : '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0 0 10 9.87v4.263a1 1 0 0 0 1.555.832l3.197-2.132a1 1 0 0 0 0-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg> 開始蒐集';
+}
+
+function updateProgress(done, total, status) {
+  const pct = total ? Math.round(done / total * 100) : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `${done} / ${total}`;
+  document.getElementById('progress-status').textContent = status;
+}
+
+function appendLog(text, isError = false) {
+  const box = document.getElementById('log-box');
+  const line = document.createElement('div');
+  line.className = isError ? 'text-red-400' : '';
+  line.textContent = text;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+}
+
+function statusBadge(status) {
+  const map = {
+    '已找到Email': 'badge-green',
+    '已填表單':    'badge-yellow',
+    '需手動處理':  'badge-orange',
+    '無聯絡方式':  'badge-red',
+    '無法連線':    'badge-gray',
+    '填表失敗':    'badge-red',
+  };
+  const cls = map[status] || 'badge-gray';
+  return `<span class="status-badge ${cls}">${status}</span>`;
+}
+
+function addResultRow(item) {
+  allResults.push(item);
+  document.getElementById('result-section').classList.remove('hidden');
+  const tbody = document.getElementById('result-tbody');
+  const tr = document.createElement('tr');
+  tr.dataset.company = (item.company || '').toLowerCase();
+  tr.dataset.emails = (item.emails || []).join(' ').toLowerCase();
+  const emailStr = item.emails && item.emails.length
+    ? item.emails.map(e => `<a href="mailto:${e}" class="text-blue-600 hover:underline">${e}</a>`).join('<br>')
+    : '<span class="text-gray-400">—</span>';
+  tr.innerHTML = `
+    <td class="px-4 py-2.5 font-medium text-gray-800 max-w-xs truncate" title="${item.company}">${item.company || '—'}</td>
+    <td class="px-4 py-2.5">${emailStr}</td>
+    <td class="px-4 py-2.5">${statusBadge(item.status)}</td>
+    <td class="px-4 py-2.5"><a href="${item.url}" target="_blank" class="text-blue-500 hover:underline text-xs truncate block max-w-xs">${item.url}</a></td>
+  `;
+  tbody.appendChild(tr);
+  updateResultCount();
+}
+
+function updateResultCount() {
+  const rows = document.getElementById('result-tbody').querySelectorAll('tr:not(.hidden)');
+  document.getElementById('result-count').textContent = `顯示 ${rows.length} 筆 / 共 ${allResults.length} 筆`;
+}
+
+function filterTable(query) {
+  const q = query.toLowerCase();
+  document.getElementById('result-tbody').querySelectorAll('tr').forEach(tr => {
+    const match = tr.dataset.company.includes(q) || tr.dataset.emails.includes(q);
+    tr.classList.toggle('hidden', !match);
+  });
+  updateResultCount();
+}
+
+function showSummary(data) {
+  document.getElementById('summary-box').classList.remove('hidden');
+  const statusColors = {
+    '已找到Email': 'text-green-700', '已填表單': 'text-yellow-700',
+    '需手動處理': 'text-orange-700', '無聯絡方式': 'text-red-600',
+  };
+  let html = '';
+  for (const [status, count] of Object.entries(data.summary)) {
+    const cls = statusColors[status] || 'text-gray-700';
+    html += `<div class="flex justify-between"><span class="${cls}">${status}</span><span class="font-mono font-semibold">${count} 筆</span></div>`;
+  }
+  html += `<div class="flex justify-between border-t pt-2 mt-2 font-semibold"><span>總計 Email 數</span><span class="font-mono">${data.total_emails}</span></div>`;
+  document.getElementById('summary-content').innerHTML = html;
+  updateProgress(currentTotal, currentTotal, '✓ 完成！');
+}
+
+function downloadExcel() {
+  if (currentJobId) window.location.href = `/api/download/${currentJobId}`;
+}
+</script>
+</body>
+</html>
