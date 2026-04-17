@@ -1,8 +1,11 @@
 #!/bin/bash
 # 啟動贊助商蒐集工具網頁介面 + 公開 Tunnel
-# 用法：bash start.sh [port]
+# 用法：
+#   bash start.sh                          # port 5000，自動 quick tunnel
+#   bash start.sh 5000 <CF_TUNNEL_TOKEN>   # 使用 Cloudflare 命名 tunnel
 
 PORT=${1:-5000}
+CF_TOKEN="${2:-${CF_TUNNEL_TOKEN:-}}"     # 可由參數或環境變數 CF_TUNNEL_TOKEN 傳入
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "======================================"
@@ -42,15 +45,28 @@ echo "[3/3] 嘗試建立公開 Tunnel..."
 CF_PID=""
 tunnel_started=false
 
-# 方法 A：cloudflared（免帳號）
-if command -v cloudflared &>/dev/null; then
-  echo "  → 使用 Cloudflare Tunnel..."
+# 方法 A：cloudflared 命名 tunnel（有 token，最穩定）
+if command -v cloudflared &>/dev/null && [ -n "$CF_TOKEN" ]; then
+  echo "  → 使用 Cloudflare 命名 Tunnel（token 模式）..."
+  cloudflared tunnel run --token "$CF_TOKEN" 2>&1 | \
+    grep --line-buffered -E "INF|ERR|Registered" &
+  CF_PID=$!
+  sleep 10
+  if kill -0 $CF_PID 2>/dev/null; then
+    tunnel_started=true
+    echo ""
+    echo "  ✓ Tunnel 已啟動！請至 Cloudflare Zero Trust Dashboard 查看公開網址"
+    echo "  (dash.cloudflare.com → Zero Trust → Networks → Tunnels)"
+  fi
+fi
+
+# 方法 B：cloudflared quick tunnel（免帳號）
+if ! $tunnel_started && command -v cloudflared &>/dev/null; then
+  echo "  → 使用 Cloudflare Quick Tunnel（免帳號）..."
   cloudflared tunnel --url "http://localhost:$PORT" --protocol http2 2>&1 | \
-    grep --line-buffered -E "trycloudflare|INF \+" &
+    grep --line-buffered -E "trycloudflare|quick Tunnel" &
   CF_PID=$!
   sleep 12
-
-  # 檢查 tunnel 是否成功顯示 URL
   if kill -0 $CF_PID 2>/dev/null; then
     tunnel_started=true
     echo ""
@@ -79,10 +95,17 @@ fi
 if ! $tunnel_started; then
   echo ""
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  echo "  [提示] 公開 Tunnel 無法建立於此環境"
-  echo "  請改用本機網址：http://${LOCAL_IP}:${PORT}"
-  echo "  或設定 ngrok authtoken 後重試："
-  echo "    ngrok config add-authtoken <your_token>"
+  echo "  [提示] 公開 Tunnel 無法在此環境建立"
+  echo "  （cloudflared 需要 port 7844 開通）"
+  echo ""
+  echo "  解決方法："
+  echo "  1. 在自己的電腦/VPS 執行此腳本"
+  echo "  2. 帶入 Cloudflare Tunnel token："
+  echo "     bash start.sh 5000 <eyJ...token>"
+  echo "  3. 或用 ngrok："
+  echo "     ngrok config add-authtoken <token>"
+  echo ""
+  echo "  本機仍可使用：http://${LOCAL_IP}:${PORT}"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 fi
 
